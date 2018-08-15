@@ -3,17 +3,13 @@ var mysql = require('mysql');
 function con() {
     return mysql.createConnection({
         host     : 'localhost',
-        port: 3006,
+        port: 3306,
         user     : 'root',
         password : 'root',
-        database : 'burgers'
+        database : 'burgers_db'
     });
 }
   
-// con.connect(function(err) {
-//     if (err) {
-//         console.log("Error Connecting:"+err)
-//     }
-// });
+
 
 module.exports = con;

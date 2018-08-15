@@ -1,36 +1,69 @@
-var con = require("./connection.js");
-var connection = con()
+var db = require("./connection.js");
 
-connection.connect((err) => {
-    if (err) {
-        console.log("Error Connecting:"+err)
+var con = db();
+
+function BurgerOrm() {
+    this.connection = con;
+    this.tableName = "burgers";
+
+    this.selectAll = function() {
+
+        var query = `SELECT * from burgers`; //change this
+
+        this.connection.query(query, (err, data) => {
+            if (err) {
+                console.log(err);
+                return false;
+            }
+            return true;
+        })
+        //used toshow all old burgers
     }
-});
 
-var orm = new BurgerOrm(connect, "burgers");
-    var sql = "INSERT INTO BURGERS (burger_name) VALUES (?)"
+    this.insertOne = function(bName) {
+
+        var query = `INSERT INTO burgers (burger_name) VALUES ("${bName}")`; //change this
+
+        this.connection.query(query, (err, data) => {
+            if (err) {
+                console.log(err);
+                return false;
+            }
+            return true;
+        })
+
+    }
+
+    this.updateOne = function(tableId) {
+
+        var query = `UPDATE burgers SET DEVOURED = TRUE WHERE ID = "${tableId}"`; //change this
+
+        this.connection.query(query, (err, data) => {
+            if (err) {
+                console.log(err);
+                return false;
+            }
+            return true;
+        })
+
+
+    }
+
+}
+
+// var orm = new BurgerOrm(connect, "burgers");
+//     var sql = "INSERT INTO BURGERS (burger_name) VALUES (?)"
 
     
-    function selectAll() {
-        //used toshow all old burgers
-    };
 
-    function insertOne() {
+//     function insertOne() {
 
-        con.query(sql, function (err, result) {
-            if (err) throw err;
-            console.log("1 burger ordered");
-        });
-    };
-
-    function updateOne() {
-        
-    };
+//         con.query(sql, function (err, result) {
+//             if (err) throw err;
+//             console.log("1 burger ordered");
+//         });
+//     };
 
 
 
-module.exports = {
-    selectAll: selectAll,
-    insertOne: insertOne,
-    updateOne: updateOne
-}
+module.exports = {BurgerOrm: BurgerOrm};
