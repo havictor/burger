@@ -52,22 +52,13 @@ app.put("/api/eat/:id", function (req, res) {
 
 })
 
-app.get("/api/showall", function (req, res, done) {
+app.get("/api/showall", async function (req, res, done) {
 
-    return new Promise((resolve, reject) => {
         var burger = new orms.BurgerOrm(con, "burgers");
-        // console.log(burger.selectAll());
-        var testing = burger.selectAll(); //returning undefined?
-        //console.log(burger.selectAll)
-        //console.log(burger.test);
-        // console.log(burger);
-        // console.log(testing);
 
-        //console.log(testing);
+        var testing = await burger.selectAll();
 
-    
         console.log(testing);
-        resolve(res.json(testing));
-    })
+        res.json(testing);
 
 })
