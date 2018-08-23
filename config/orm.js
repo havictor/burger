@@ -2,27 +2,47 @@ var db = require("./connection.js");
 
 var con = db();
 
+
 function BurgerOrm() {
     this.connection = con;
     this.tableName = "burgers";
 
     this.selectAll = function() {
+        return new Promise((resolve, reject) => {
+        //callback();
+            
+            var query = `SELECT * from burgers`;
+            this.connection.query(query, (err, data, fields) => {
 
-        var query = `SELECT * from burgers`; //change this
+                var thisBurger;
 
-        this.connection.query(query, (err, data) => {
-            if (err) {
-                console.log(err);
-                return false;
-            }
-            return true;
+                if (err) {
+                    console.log(err);
+                    return false; 
+                }
+
+                //return(data);
+
+                Object.keys(data).forEach(function(key) {
+                    var row = data[key];
+                    thisBurger = {id: row.id, burger_name: row.burger_name, devoured: row.devoured};
+                    
+                })
+
+                console.log(thisBurger)
+
+                resolve(thisBurger);
+                //console.log(data);
+
+                //res.JSON(thisBurger);
+            })
+        // callback();
         })
-        //used toshow all old burgers
     }
 
     this.insertOne = function(bName) {
 
-        var query = `INSERT INTO burgers (burger_name) VALUES ("${bName}")`; //change this
+        var query = `INSERT INTO burgers (burger_name) VALUES ("${bName}")`;
 
         this.connection.query(query, (err, data) => {
             if (err) {
@@ -36,7 +56,7 @@ function BurgerOrm() {
 
     this.updateOne = function(tableId) {
 
-        var query = `UPDATE burgers SET DEVOURED = TRUE WHERE ID = "${tableId}"`; //change this
+        var query = `UPDATE burgers SET DEVOURED = TRUE WHERE ID = "${tableId}"`;
 
         this.connection.query(query, (err, data) => {
             if (err) {
