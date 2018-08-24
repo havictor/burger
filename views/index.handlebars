@@ -2,8 +2,8 @@
     <div class="column is-one-third leftThird omni">
 
         {{#each burgerUneaten}}
-                <div class="wrapper level" id={{this.id}}Wrapper>
-                <div class="level-left burger" id={{this.id}}Burger>
+            <div class="wrapper level" id={{this.id}}Wrapper>
+                <div class="level-left burger" id={{this.id}}Burger data-id={{this.id}}>
                     {{this.id}}: {{this.burger_name}}
                 </div>
 
@@ -11,7 +11,7 @@
                     <a class="button eatButton is-rounded" id={{this.id}}Button>OmNomNom!</a>
                 </div>
 
-        </div>
+            </div>
         {{/each}}
 
     </div>
