@@ -1,40 +1,48 @@
-<div class="level">
+<div class="columns">
+    <div class="column is-one-third leftThird omni">
 
-    <div class="columns">
-    
         {{#each burgerUneaten}}
-            <div class="wrapper" id=`{{this.id}}Wrapper`>
-
-                <div class="column burger" id=`{{this.id}}Burger`>
+                <div class="wrapper level" id={{this.id}}Wrapper>
+                <div class="level-left burger" id={{this.id}}Burger>
                     {{this.id}}: {{this.burger_name}}
                 </div>
 
-                <div class="column">
-                    <button class="eatButton" id=`{{this.id}}Button`>OmNomNom!</button>
+                <div class="level-right">
+                    <a class="button eatButton is-rounded" id={{this.id}}Button>OmNomNom!</a>
                 </div>
 
-            </div>
+        </div>
         {{/each}}
 
     </div>
 
-    <div class="columns">
+    <div class="column is-two-thirds omni">
+        <img src="\static\assets\img\Bob.jpeg">
+    </div>
 
+    <div class="column is-one-third rightThird">
         {{#each burgerEaten}}
-            <div class="wrapper" id=`{{this.id}}Wrapper`>
-                <div class="column burger" id=`{{this.id}}Burger`>
-                    {{this.id}}: {{this.burger_name}}
-                </div>
+        <div class="columns">
+            <div class="control wrapper" id=`{{this.id}}Wrapper`>
+                <textarea class="textarea burger" id={{this.id}}Burger type="text" placeholder="{{this.id}}: {{this.burger_name}}" disabled></textarea>
             </div>
+        </div>
         {{/each}}
 
     </div>
 
 </div>
 
-<div class="level">
-    <form>
-        <input id="orderRequest">
-    </form>
-    <button id="orderButton">Order</button>
+<div class="level omni">
+    
+<div class="level-item">
+    <div class="field">
+        <div class="control">
+            <input class="input is-large" id="orderRequest" type="text" placeholder="Place Order Here">
+        </div>
+
+    </div>
+    <a id="orderButton" class="button is-focused">Order</a>
+</div>
+
 </div>

@@ -1,0 +1,19 @@
+.leftThird {
+    max-width: 20%
+}
+
+.middleThird {
+    max-width: 60%
+}
+
+.rightThird {
+    max-width: 20%
+}
+
+.level {background-color: teal;
+border-color: black;
+border-width: 10px}
+
+.title {
+    text-align: center
+}

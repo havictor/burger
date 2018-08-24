@@ -21,7 +21,7 @@ function BurgerOrm() {
 
                 /*
                 Object.keys(data).forEach(function(key) {
-                    var row = data[key];
+                    var row = data[key];    
                     thisBurger = {id: row.id, 
                         burger_name: row.burger_name, 
                         devoured: row.devoured};

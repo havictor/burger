@@ -17,13 +17,14 @@ var handlebars = require("express-handlebars")
 var eatenArray;
 var uneatenArray;
 
-//
+app.use('/static', express.static('public'));
+// app.use('/static', express.static(path.join(__dirname, 'bulma')));
+
 app.engine('handlebars', 
     handlebars({
         defaultLayout: "main",
     })); 
-app.set("view engine", "handlebars"); //testing
-//
+app.set("view engine", "handlebars"); 
 
 var orms = require("../config/orm"); //temp solution
 
