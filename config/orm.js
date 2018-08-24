@@ -19,6 +19,7 @@ function BurgerOrm() {
                     return false; 
                 }
 
+                /*
                 Object.keys(data).forEach(function(key) {
                     var row = data[key];
                     thisBurger = {id: row.id, 
@@ -27,6 +28,8 @@ function BurgerOrm() {
                 })
 
                 resolve(thisBurger);
+                */
+                resolve(data);
             })
         })
     }

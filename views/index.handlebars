@@ -1,0 +1,40 @@
+<div class="level">
+
+    <div class="columns">
+    
+        {{#each burgerUneaten}}
+            <div class="wrapper" id=`{{this.id}}Wrapper`>
+
+                <div class="column burger" id=`{{this.id}}Burger`>
+                    {{this.id}}: {{this.burger_name}}
+                </div>
+
+                <div class="column">
+                    <button class="eatButton" id=`{{this.id}}Button`>OmNomNom!</button>
+                </div>
+
+            </div>
+        {{/each}}
+
+    </div>
+
+    <div class="columns">
+
+        {{#each burgerEaten}}
+            <div class="wrapper" id=`{{this.id}}Wrapper`>
+                <div class="column burger" id=`{{this.id}}Burger`>
+                    {{this.id}}: {{this.burger_name}}
+                </div>
+            </div>
+        {{/each}}
+
+    </div>
+
+</div>
+
+<div class="level">
+    <form>
+        <input id="orderRequest">
+    </form>
+    <button id="orderButton">Order</button>
+</div>

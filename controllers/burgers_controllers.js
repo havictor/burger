@@ -12,15 +12,18 @@ app.listen(3030, function() {
     console.log("Listening on Port 3030");
 })
 
-//var handlebars = require("express-handlebars")
+var handlebars = require("express-handlebars")
 
-/*
+var eatenArray;
+var uneatenArray;
+
+//
 app.engine('handlebars', 
     handlebars({
         defaultLayout: "main",
     })); 
 app.set("view engine", "handlebars"); //testing
-*/
+//
 
 var orms = require("../config/orm"); //temp solution
 
@@ -28,7 +31,9 @@ app.use(bodyParser());
 
 //render default page
 app.get("/", function (req, res) {
-    res.send().path.resolve("./views/index.html"); //todo: change to render after getting mustachebars working.
+    //res.send().path.resolve("./views/index.html"); //todo: change to render after getting mustachebars working.
+    res.render("index", {burgerUneaten: uneatenArray,
+        burgerEaten: eatenArray})
 })
 
 //creating a new burger
@@ -56,9 +61,18 @@ app.get("/api/showall", async function (req, res, done) {
 
         var burger = new orms.BurgerOrm(con, "burgers");
 
-        var testing = await burger.selectAll();
+        var testing = await burger.selectAll()
 
-        console.log(testing);
+        //console.log(testing+"testing");
+
+        uneatenArray = testing.filter(burg => burg.devoured == 0
+        )
+        eatenArray = testing.filter(burg => burg.devoured == 1
+        )
+        console.log(uneatenArray);
+        console.log(eatenArray);
+
+
         res.json(testing);
 
 })
