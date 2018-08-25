@@ -3,12 +3,12 @@
 
         {{#each burgerUneaten}}
             <div class="wrapper level" id={{this.id}}Wrapper>
-                <div class="level-left burger" id={{this.id}}Burger data-id={{this.id}}>
+                <div class="level-left burger" id={{this.id}}Burger>
                     {{this.id}}: {{this.burger_name}}
                 </div>
 
                 <div class="level-right">
-                    <a class="button eatButton is-rounded" id={{this.id}}Button>OmNomNom!</a>
+                    <a class="button eatButton is-rounded" id={{this.id}}Button data-id={{this.id}}>OmNomNom!</a>
                 </div>
 
             </div>

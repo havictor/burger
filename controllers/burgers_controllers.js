@@ -31,11 +31,11 @@ var orms = require("../config/orm"); //temp solution
 app.use(bodyParser());
 
 //render default page
-app.get("/", function (req, res) {
-    //res.send().path.resolve("./views/index.html"); //todo: change to render after getting mustachebars working.
-    res.render("index", {burgerUneaten: uneatenArray,
-        burgerEaten: eatenArray})
-})
+// app.get("/", function (req, res) {
+//     //res.send().path.resolve("./views/index.html"); //todo: change to render after getting mustachebars working.
+//     res.render("index", {burgerUneaten: uneatenArray,
+//         burgerEaten: eatenArray})
+// })
 
 //creating a new burger
 app.post("/api/order", function (req, res) {
@@ -44,36 +44,33 @@ app.post("/api/order", function (req, res) {
     var burger = new orms.BurgerOrm(con, "burgers");
 
     burger.insertOne(burgName);
-
+    res.redirect(303, "/");
 })
 
 //eating a burger
 app.put("/api/eat/:id", function (req, res) {
 
     var tableId = req.params.id;
-    console.log(tableId)
     var burger = new orms.BurgerOrm(con, "burgers");
 
     burger.updateOne(tableId);
 
+    res.redirect(303, "/");
 })
 
-app.get("/api/showall", async function (req, res, done) {
+app.get("/", async function (req, res, done) {
 
         var burger = new orms.BurgerOrm(con, "burgers");
 
         var testing = await burger.selectAll()
 
-        //console.log(testing+"testing");
-
         uneatenArray = testing.filter(burg => burg.devoured == 0
         )
         eatenArray = testing.filter(burg => burg.devoured == 1
         )
-        console.log(uneatenArray);
-        console.log(eatenArray);
 
-
-        res.json(testing);
+        res.render("index", {burgerUneaten: uneatenArray,
+            burgerEaten: eatenArray})
+        //res.json(testing);
 
 })
