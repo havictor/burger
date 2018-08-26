@@ -26,21 +26,13 @@ app.engine('handlebars',
     })); 
 app.set("view engine", "handlebars"); 
 
-var orms = require("../config/orm"); //temp solution
+var orms = require("../config/orm");
 
 app.use(bodyParser());
-
-//render default page
-// app.get("/", function (req, res) {
-//     //res.send().path.resolve("./views/index.html"); //todo: change to render after getting mustachebars working.
-//     res.render("index", {burgerUneaten: uneatenArray,
-//         burgerEaten: eatenArray})
-// })
 
 //creating a new burger
 app.post("/api/order", function (req, res) {
     var burgName = req.body.name;
-    console.log(req.body.name);
     var burger = new orms.BurgerOrm(con, "burgers");
 
     burger.insertOne(burgName);
@@ -60,17 +52,13 @@ app.put("/api/eat/:id", function (req, res) {
 
 app.get("/", async function (req, res, done) {
 
-        var burger = new orms.BurgerOrm(con, "burgers");
+    var burger = new orms.BurgerOrm(con, "burgers");
 
-        var testing = await burger.selectAll()
+    var testing = await burger.selectAll()
 
-        uneatenArray = testing.filter(burg => burg.devoured == 0
-        )
-        eatenArray = testing.filter(burg => burg.devoured == 1
-        )
+    uneatenArray = testing.filter(burg => burg.devoured == 0)
+    eatenArray = testing.filter(burg => burg.devoured == 1)
 
-        res.render("index", {burgerUneaten: uneatenArray,
-            burgerEaten: eatenArray})
-        //res.json(testing);
-
+    res.render("index", {burgerUneaten: uneatenArray,
+        burgerEaten: eatenArray})
 })

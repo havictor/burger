@@ -1,5 +1,9 @@
 $(".wrapper").on("click", ".eatButton", function() {
-    console.log($(this).attr("data-id"))
+    var eat = $(this).attr("data-id")
+    $.ajax({
+        method: "put",
+        url: `/api/eat/${eat}`
+    })
 })
 
 $("#orderButton").on("click", function() {
