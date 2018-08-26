@@ -8,7 +8,9 @@ var bodyParser = require("body-parser");
 
 var app = express();
 
-app.listen(3030, function() {
+var PORT = process.env.PORT || 3000;
+
+app.listen(port, function() {
     console.log("Listening on Port 3030");
 })
 
