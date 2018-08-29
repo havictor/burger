@@ -4,6 +4,7 @@ $(".wrapper").on("click", ".eatButton", function() {
         method: "put",
         url: `/api/eat/${eat}`
     })
+    .done(window.location.assign('/'))
 })
 
 $("#orderButton").on("click", function() {
@@ -11,5 +12,6 @@ $("#orderButton").on("click", function() {
     $.post("/api/order", {
         name: order
     })
+    .done(window.location.assign('/'))
     $("#orderRequest").val("")
 })

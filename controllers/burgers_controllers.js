@@ -11,7 +11,7 @@ var app = express();
 var port = process.env.PORT || 3000;
 
 app.listen(port, function() {
-    console.log("Listening on Port 3030");
+    console.log(`Listening on Port ${port}`);
 })
 
 var handlebars = require("express-handlebars")
